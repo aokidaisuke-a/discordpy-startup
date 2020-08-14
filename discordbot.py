@@ -65,4 +65,4 @@ async def on_message(message):
                 await target.add_roles(levelrole8)
                 await target.remove_roles(levelrole1)
 
-client.run("NzQzNDE3ODgxNzEwMTY2MDk3.XzUX2w.-P6BKZkVVqTPV3ZrqBkwlwPs-sc") # Botのトークン
+client.run("TOKEN") # Botのトークン
