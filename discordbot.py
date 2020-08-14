@@ -1,22 +1,23 @@
-# Botがログインしたら
+import discord
+
+client = discord.Client()
+
 @client.event
 async def on_ready():
-    msg = "やあ！TEST Botです．よろしくね！"
-    await client.send_message(text_chat,msg)
+    print('Logged in as')
+    print(client.user.name)
+    print(client.user.id)
+    print('------')
 
-# こんにちはメッセージ
 @client.event
 async def on_message(message):
-    if message.content.startswith("こんにちは"):
+    # 「おはよう」で始まるか調べる
+    if message.content.startswith("おはよう"):
+        # 送り主がBotだった場合反応したくないので
         if client.user != message.author:
-            msg = "こんにちは " + message.author.name + "さん！"
-            await client.send_message(message.channel, msg)
-
-# メンバのステータスが変更されたら
-@client.event
-async def on_member_update(before, after):
-    if before.status != after.status:
-        msg = after.display_name + " さんが " + str(after.status) + " になりました"
-        await client.send_message(text_chat,msg)
+            # メッセージを書きます
+            m = "おはようございます" + message.author.name + "さん！"
+            # メッセージが送られてきたチャンネルへメッセージを送ります
+            await message.channel.send(m)
 
 client.run("DISCORD_BOT_TOKEN") # Botのトークン
